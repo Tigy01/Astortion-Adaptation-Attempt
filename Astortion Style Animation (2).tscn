@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://dlwx52wqo15kp"]
+
+[ext_resource type="Shader" uid="uid://cavpfgqhccb83" path="res://addons/PixelMapGenerator/Astortion Pixel Processor Shader.tres" id="1_5unwp"]
+[ext_resource type="Texture2D" uid="uid://hx4muao47v7n" path="res://Assets/Bat Base Animation LVL2..map.png" id="2_l3qlj"]
+[ext_resource type="Texture2D" uid="uid://dydwsy4nj4swy" path="res://Assets/Bat Base Animation StandardColor.map.png" id="4_8ruq1"]
+
+[sub_resource type="Animation" id="Animation_g1lmu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rlg44"]
+resource_name = "flaping"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vlk10"]
+_data = {
+"RESET": SubResource("Animation_g1lmu"),
+"flaping": SubResource("Animation_rlg44")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f8qbh"]
+resource_local_to_scene = true
+shader = ExtResource("1_5unwp")
+shader_parameter/MapResolution = Vector2(32, 32)
+shader_parameter/map = ExtResource("2_l3qlj")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n0dl6"]
+load_path = "res://.godot/imported/Bat Base Animation Reference.source.png-8fbf69da00ebfdfc9e413037fdbd3b01.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dpta4"]
+resource_local_to_scene = true
+shader = ExtResource("1_5unwp")
+shader_parameter/MapResolution = Vector2(32, 32)
+shader_parameter/map = ExtResource("4_8ruq1")
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(1, -1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_vlk10")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_f8qbh")
+position = Vector2(561, 319)
+scale = Vector2(10, 10.066)
+texture = SubResource("CompressedTexture2D_n0dl6")
+hframes = 5
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_dpta4")
+position = Vector2(769, 321)
+scale = Vector2(10, 10.066)
+texture = SubResource("CompressedTexture2D_n0dl6")
+hframes = 5
