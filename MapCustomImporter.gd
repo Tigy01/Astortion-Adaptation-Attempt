@@ -38,6 +38,6 @@ func _import(source_file, save_path, options, platform_variants, gen_files):
 	else:
 		print("this is doing something")
 	var tex = Texture2D.new()
-	tex.set()
+#	tex.set()
 	var filename = save_path + "." + _get_save_extension()
 	return ResourceSaver.save(tex, filename)

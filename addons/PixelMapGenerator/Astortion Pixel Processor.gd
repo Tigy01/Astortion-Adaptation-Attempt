@@ -3,7 +3,7 @@ extends Node
 
 var spritePath: String #path to reference sprite. Must use a unique color for every pixel, and attempt to represent geometry between frames by shared points of the same color that move.
 
-func processAssets(path):
+func processAssets(path: String):
 	spritePath = path
 	print(spritePath)
 	var mapPath = spritePath.get_basename() + '.map.' + spritePath.get_extension() #path to reference map. This acts as your template for your lookups later.
@@ -17,12 +17,14 @@ func processAssets(path):
 	updateSkinColors(mapColors, mapCoords, skinColors)
 	finalizeAndExport(spriteImage, skinColors)
 
-func getImage(filePath: String) -> Image: #returns the Image from a texture.
+## Returns the Image from a texture.
+func getImage(filePath: String) -> Image: 
 	var fileTexture = load(filePath)
 	var fileImage:Image = fileTexture.get_image()
 	return fileImage
 
-func makeColorArray(texture: Image) -> Array: #Generates color array for every pixel row by row for every collumn. Left to right top to bottom.
+## Generates color array for every pixel row by row for every collumn. Left to right top to bottom.
+func makeColorArray(texture: Image) -> Array: 
 	var ColorData:= []
 	for y in texture.get_size().y:
 		for x in texture.get_size().x:
@@ -54,6 +56,6 @@ func finalizeAndExport(spriteImage, skinColors): #creates a new image the same s
 			source.set_pixel(x,y,skinColors[color_index])
 			color_index+=1
 	return source
-#	var png_path := str(spritePath.get_basename(), ".source.png")
-#	source.save_png(png_path)
-#	print("Generated: ", png_path)
+	var png_path := str(spritePath.get_basename(), ".source.png")
+	source.save_png(png_path)
+	print("Generated: ", png_path)

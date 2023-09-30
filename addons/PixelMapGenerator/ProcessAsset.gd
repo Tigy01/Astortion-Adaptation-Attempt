@@ -1,21 +1,22 @@
 @tool
 extends Control
 
-var process_script = preload("res://addons/PixelMapGenerator/Astortion Pixel Processor.gd").new()
+@onready var text_edit = $ColorRect/VBoxContainer/HBoxContainer/TextEdit
 
-var pathToFile
+var pixel_processor = preload("res://addons/PixelMapGenerator/AstortionPixelProcessor.gd").new()
 
-func ProcessSelectFile():
-	if pathToFile!= null:
-		process_script.processAssets(pathToFile)
-		var scan = load("res://addons/PixelMapGenerator/ScanFileSystem.gd").new()
-		scan.scan()
+var path_to_file
+
+func process_selected_file():
+	if path_to_file!= null:
+		pixel_processor.process_assets(path_to_file)
+		pixel_processor.scan()
 	else:
 		print('no file selected')
 
 func _on_file_dialog_file_selected(path):
-	pathToFile = path
-	$"VBoxContainer/File Select Button".text = ('Select File: ' + path.substr(0,35)+ '...')
+	path_to_file = path
+	text_edit.text = (path)
 
 func _on_file_select_button_pressed():
 	$SelectReferenceFile.show()

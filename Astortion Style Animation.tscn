@@ -2,6 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://cavpfgqhccb83" path="res://addons/PixelMapGenerator/Astortion Pixel Processor Shader.tres" id="1_5unwp"]
 [ext_resource type="Texture2D" uid="uid://hx4muao47v7n" path="res://Assets/Bat Base Animation LVL2..map.png" id="2_l3qlj"]
+[ext_resource type="Texture2D" uid="uid://bnikmarx7tef7" path="res://Assets/Bat Base Animation Reference.source.png" id="3_2wvv4"]
 [ext_resource type="Texture2D" uid="uid://dydwsy4nj4swy" path="res://Assets/Bat Base Animation StandardColor.map.png" id="4_8ruq1"]
 
 [sub_resource type="Animation" id="Animation_g1lmu"]
@@ -72,9 +73,6 @@ shader = ExtResource("1_5unwp")
 shader_parameter/MapResolution = Vector2(32, 32)
 shader_parameter/map = ExtResource("2_l3qlj")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n0dl6"]
-load_path = "res://.godot/imported/Bat Base Animation Reference.source.png-8fbf69da00ebfdfc9e413037fdbd3b01.ctex"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dpta4"]
 resource_local_to_scene = true
 shader = ExtResource("1_5unwp")
@@ -95,7 +93,7 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_f8qbh")
 position = Vector2(561, 319)
 scale = Vector2(10, 10.066)
-texture = SubResource("CompressedTexture2D_n0dl6")
+texture = ExtResource("3_2wvv4")
 hframes = 5
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
@@ -103,5 +101,5 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_dpta4")
 position = Vector2(769, 321)
 scale = Vector2(10, 10.066)
-texture = SubResource("CompressedTexture2D_n0dl6")
+texture = ExtResource("3_2wvv4")
 hframes = 5
